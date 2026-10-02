@@ -20,11 +20,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.outlined.TrendingUp
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
-import androidx.compose.material.icons.outlined.TrendingUp
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -236,7 +236,7 @@ private fun ExpensesBottomBar() {
                 selected = true
             )
             AddExpenseItem()
-            NavigationItem(label = "Metas", icon = Icons.Outlined.TrendingUp)
+            NavigationItem(label = "Metas", icon = Icons.AutoMirrored.Outlined.TrendingUp)
             NavigationItem(label = "Perfil", icon = Icons.Outlined.Person)
         }
     }

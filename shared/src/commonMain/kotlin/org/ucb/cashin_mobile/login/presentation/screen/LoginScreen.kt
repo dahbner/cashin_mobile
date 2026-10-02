@@ -145,7 +145,13 @@ fun LoginScreen(
 
             PrimaryButton(
                 text = stringResource(Res.string.login_button),
-                onClick = { viewModel.emitEvent(LoginEvent.OnSubmit) },
+                onClick = {
+                    //  CAMBIO TEMPORAL PARA EL PROTOTIPO:
+                    // Navegación directa al Home saltando la validación del backend
+                    navController.navigate(NavRoute.Home) {
+                        popUpTo(NavRoute.Login) { inclusive = true }
+                    }
+                },
                 isLoading = state.value.isLoading,
                 modifier = Modifier.padding(horizontal = 44.dp)
             )

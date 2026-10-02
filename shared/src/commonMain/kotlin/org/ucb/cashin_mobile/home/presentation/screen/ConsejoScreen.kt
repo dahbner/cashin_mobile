@@ -7,7 +7,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,14 +23,23 @@ import androidx.navigation.NavController
 import org.ucb.cashin_mobile.home.presentation.composable.CashinBottomBar
 import org.ucb.cashin_mobile.home.presentation.composable.WireframeBox
 import org.ucb.cashin_mobile.login.presentation.composable.CashinColors
-import org.ucb.cashin_mobile.login.presentation.composable.PrimaryButton
-import org.ucb.cashin_mobile.navigation.NavRoute
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavController) {
+fun ConsejoScreen(navController: NavController) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         containerColor = CashinColors.Background,
+        topBar = {
+            TopAppBar(
+                title = { Text("Consejo Cashi") },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+                    }
+                }
+            )
+        },
         bottomBar = { CashinBottomBar() }
     ) { innerPadding ->
         Column(
@@ -34,28 +50,22 @@ fun HomeScreen(navController: NavController) {
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            WireframeBox(label = "Saludo + Perrito Cashi", color = Color.LightGray, height = 180.dp)
-            WireframeBox(label = "Tarjeta de Saldo\nBs 1,000.00", color = Color.Green, height = 140.dp)
+            WireframeBox(label = "Burbuja: Consejo del día", color = Color.Cyan, height = 160.dp)
+            WireframeBox(label = "Imagen de Cashi", color = Color.LightGray, height = 200.dp)
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 WireframeBox(
-                    label = "Ingresos",
-                    color = Color.Cyan,
-                    height = 100.dp,
+                    label = "👍 Útil",
+                    color = Color.Green,
+                    height = 64.dp,
                     modifier = Modifier.weight(1f)
                 )
                 WireframeBox(
-                    label = "Gastos",
-                    color = Color.Yellow,
-                    height = 100.dp,
+                    label = "👎 No útil",
+                    color = Color(0xFFFF8A80),
+                    height = 64.dp,
                     modifier = Modifier.weight(1f)
                 )
             }
-
-            PrimaryButton(text = "Gastos", onClick = { navController.navigate(NavRoute.Expenses) })
-            PrimaryButton(text = "Consejo Cashi", onClick = { navController.navigate(NavRoute.Consejo) })
-            PrimaryButton(text = "Pregunta Cashi", onClick = { navController.navigate(NavRoute.Pregunta) })
-            PrimaryButton(text = "Desafíos", onClick = { navController.navigate(NavRoute.Desafios) })
-            PrimaryButton(text = "Login", onClick = { navController.navigate(NavRoute.Login) })
         }
     }
 }
