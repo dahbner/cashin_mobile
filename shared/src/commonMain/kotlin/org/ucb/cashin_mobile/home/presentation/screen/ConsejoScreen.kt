@@ -1,22 +1,14 @@
 package org.ucb.cashin_mobile.home.presentation.screen
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ThumbDown
-import androidx.compose.material.icons.filled.ThumbUp
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,17 +16,19 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import org.ucb.cashin_mobile.home.presentation.composable.CashinBottomBar
+import org.ucb.cashin_mobile.home.presentation.composable.WireframeBox
 import org.ucb.cashin_mobile.login.presentation.composable.CashinColors
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConsejoScreen(navController: NavController) {
     Scaffold(
+        modifier = Modifier.fillMaxSize(),
         containerColor = CashinColors.Background,
         topBar = {
             TopAppBar(
@@ -45,35 +39,32 @@ fun ConsejoScreen(navController: NavController) {
                     }
                 }
             )
-        }
-    ) { padding ->
+        },
+        bottomBar = { CashinBottomBar() }
+    ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding)
-                .padding(24.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(160.dp),
-                shape = RoundedCornerShape(16.dp),
-                elevation = CardDefaults.cardElevation(4.dp)
-            ) {}
-            Box(
-                modifier = Modifier
-                    .size(200.dp)
-                    .background(Color.LightGray, RoundedCornerShape(16.dp))
-            )
-            Row(horizontalArrangement = Arrangement.spacedBy(24.dp)) {
-                IconButton(onClick = {}) {
-                    Icon(Icons.Filled.ThumbUp, contentDescription = null)
-                }
-                IconButton(onClick = {}) {
-                    Icon(Icons.Filled.ThumbDown, contentDescription = null)
-                }
+            WireframeBox(label = "Burbuja: Consejo del día", color = Color.Cyan, height = 160.dp)
+            WireframeBox(label = "Imagen de Cashi", color = Color.LightGray, height = 200.dp)
+            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                WireframeBox(
+                    label = "👍 Útil",
+                    color = Color.Green,
+                    height = 64.dp,
+                    modifier = Modifier.weight(1f)
+                )
+                WireframeBox(
+                    label = "👎 No útil",
+                    color = Color(0xFFFF8A80),
+                    height = 64.dp,
+                    modifier = Modifier.weight(1f)
+                )
             }
         }
     }

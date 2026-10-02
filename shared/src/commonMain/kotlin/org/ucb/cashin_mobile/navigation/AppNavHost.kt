@@ -1,6 +1,8 @@
 package org.ucb.cashin_mobile.navigation
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -14,7 +16,11 @@ import org.ucb.cashin_mobile.login.presentation.screen.LoginScreen
 fun AppNavHost() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = NavRoute.Home) {
+    NavHost(
+        navController = navController,
+        startDestination = NavRoute.Home,
+        modifier = Modifier.fillMaxSize()
+    ) {
         composable<NavRoute.Login> {
             LoginScreen(navController = navController)
         }
