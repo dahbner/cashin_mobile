@@ -9,4 +9,7 @@ sealed class NavRoute {
 
     @Serializable
     object Home : NavRoute()
+
+    @Serializable
+    object Expenses : NavRoute()
 }
