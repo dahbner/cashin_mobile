@@ -9,4 +9,13 @@ sealed class NavRoute {
 
     @Serializable
     object Home : NavRoute()
+
+    @Serializable
+    object Consejo : NavRoute()
+
+    @Serializable
+    object Pregunta : NavRoute()
+
+    @Serializable
+    object Desafios : NavRoute()
 }
